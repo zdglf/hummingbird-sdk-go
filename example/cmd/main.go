@@ -15,11 +15,11 @@
 package main
 
 import (
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
-	"gitee.com/winc-link/hummingbird-sdk-go/service"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
+	"github.com/winc-link/hummingbird-sdk-go/service"
 
 	"context"
-	"gitee.com/winc-link/hummingbird-sdk-go/example/internal/driver"
+	"github.com/winc-link/hummingbird-sdk-go/example/internal/driver"
 	"os"
 	"os/signal"
 	"syscall"

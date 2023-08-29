@@ -17,12 +17,12 @@ package cache
 import (
 	"context"
 	"errors"
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
-	"gitee.com/winc-link/hummingbird-sdk-go/internal/client"
-	"gitee.com/winc-link/hummingbird-sdk-go/internal/logger"
-	"gitee.com/winc-link/hummingbird-sdk-go/model"
 	"github.com/winc-link/edge-driver-proto/driverdevice"
 	"github.com/winc-link/edge-driver-proto/driverproduct"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
+	"github.com/winc-link/hummingbird-sdk-go/internal/client"
+	"github.com/winc-link/hummingbird-sdk-go/internal/logger"
+	"github.com/winc-link/hummingbird-sdk-go/model"
 	"time"
 )
 

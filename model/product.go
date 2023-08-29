@@ -15,8 +15,8 @@
 package model
 
 import (
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
 	"github.com/winc-link/edge-driver-proto/driverproduct"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
 )
 
 type (

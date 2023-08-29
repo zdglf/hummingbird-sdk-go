@@ -17,10 +17,10 @@ package device
 import (
 	"context"
 	"crypto/rand"
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
-	"gitee.com/winc-link/hummingbird-sdk-go/internal/logger"
-	"gitee.com/winc-link/hummingbird-sdk-go/model"
-	"gitee.com/winc-link/hummingbird-sdk-go/service"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
+	"github.com/winc-link/hummingbird-sdk-go/internal/logger"
+	"github.com/winc-link/hummingbird-sdk-go/model"
+	"github.com/winc-link/hummingbird-sdk-go/service"
 	"math/big"
 	"time"
 )

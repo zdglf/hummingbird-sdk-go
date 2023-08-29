@@ -15,7 +15,7 @@
 package server
 
 import (
-	h "gitee.com/winc-link/hummingbird-sdk-go"
+	h "github.com/winc-link/hummingbird-sdk-go"
 
 	"context"
 	"encoding/json"

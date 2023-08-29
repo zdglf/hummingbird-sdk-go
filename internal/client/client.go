@@ -17,7 +17,7 @@ package client
 import (
 	"context"
 	"errors"
-	"gitee.com/winc-link/hummingbird-sdk-go/internal/config"
+	"github.com/winc-link/hummingbird-sdk-go/internal/config"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/keepalive"

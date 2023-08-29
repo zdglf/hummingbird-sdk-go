@@ -16,10 +16,10 @@ package driver
 
 import (
 	"context"
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
-	"gitee.com/winc-link/hummingbird-sdk-go/example/internal/device"
-	"gitee.com/winc-link/hummingbird-sdk-go/model"
-	"gitee.com/winc-link/hummingbird-sdk-go/service"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
+	"github.com/winc-link/hummingbird-sdk-go/example/internal/device"
+	"github.com/winc-link/hummingbird-sdk-go/model"
+	"github.com/winc-link/hummingbird-sdk-go/service"
 )
 
 type SimpleDriver struct {

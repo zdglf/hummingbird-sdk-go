@@ -1,4 +1,4 @@
-module gitee.com/winc-link/hummingbird-sdk-go
+module github.com/winc-link/hummingbird-sdk-go
 
 go 1.16
 

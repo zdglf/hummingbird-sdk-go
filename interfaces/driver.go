@@ -16,8 +16,8 @@ package interfaces
 
 import (
 	"context"
-	"gitee.com/winc-link/hummingbird-sdk-go/commons"
-	"gitee.com/winc-link/hummingbird-sdk-go/model"
+	"github.com/winc-link/hummingbird-sdk-go/commons"
+	"github.com/winc-link/hummingbird-sdk-go/model"
 )
 
 type Driver interface {
