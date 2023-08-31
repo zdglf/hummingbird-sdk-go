@@ -133,7 +133,7 @@ func (d *DriverService) BatchReport(deviceId string, data model.BatchReport) (mo
 //}
 
 // PropertySetResponse 设备属性下发响应
-func (d *DriverService) PropertySetResponse(deviceId string, data model.CommonResponse) error {
+func (d *DriverService) PropertySetResponse(deviceId string, data model.PropertySetResponse) error {
 	return d.propertySetResponse(deviceId, data)
 }
 

@@ -43,9 +43,26 @@ type (
 	}
 	// PropertyGetResponse 属性查询设备响应
 	PropertyGetResponse struct {
-		CommonResponse `json:",inline"`
-		Data           map[string]Property `json:"data"`
+		//CommonResponse `json:",inline"`
+		MsgId string                    `json:"msgId"`
+		Data  []PropertyGetResponseData `json:"data"`
 	}
+	PropertyGetResponseData struct {
+		Code  string      `json:"code"`
+		Value interface{} `json:"value"`
+		Time  int64       `json:"time"`
+	}
+
+	PropertySetResponse struct {
+		MsgId string                  `json:"msgId"`
+		Data  PropertySetResponseData `json:"data"`
+	}
+	PropertySetResponseData struct {
+		ErrorMessage string `json:"errorMessage"`
+		Code         uint32 `json:"code"`
+		Success      bool   `json:"success"`
+	}
+
 	// PropertyDesiredGet 设备拉取属性期望值
 	PropertyDesiredGet struct {
 		CommonRequest `json:",inline"`
@@ -103,5 +120,19 @@ func NewPropertyReport(ack bool, data map[string]PropertyData) PropertyReport {
 			},
 		},
 		Data: data,
+	}
+}
+
+func NewPropertyGetResponse(msgId string, data []PropertyGetResponseData) PropertyGetResponse {
+	return PropertyGetResponse{
+		MsgId: msgId,
+		Data:  data,
+	}
+}
+
+func NewPropertySetResponse(msgId string, data PropertySetResponseData) PropertySetResponse {
+	return PropertySetResponse{
+		MsgId: msgId,
+		Data:  data,
 	}
 }

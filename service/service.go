@@ -253,18 +253,30 @@ func (d *DriverService) waitSignalsExit() {
 	}
 }
 
-func (d *DriverService) propertySetResponse(cid string, data model.CommonResponse) error {
-	_, err := commons.TransformToProtoMsg(cid, commons.PropertySetResponse, data, d.baseMessage)
+func (d *DriverService) propertySetResponse(cid string, data model.PropertySetResponse) error {
+	msg, err := commons.TransformToProtoMsg(cid, commons.PropertySetResponse, data, d.baseMessage)
 	if err != nil {
 		return err
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	if _, err = d.rpcClient.ThingModelMsgReport(ctx, msg); err != nil {
+		return errors.New(status.Convert(err).Message())
 	}
 	return nil
 }
 
 func (d *DriverService) propertyGetResponse(cid string, data model.PropertyGetResponse) error {
-	_, err := commons.TransformToProtoMsg(cid, commons.PropertyGetResponse, data, d.baseMessage)
+	msg, err := commons.TransformToProtoMsg(cid, commons.PropertyGetResponse, data, d.baseMessage)
 	if err != nil {
 		return err
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+
+	if _, err = d.rpcClient.ThingModelMsgReport(ctx, msg); err != nil {
+		return errors.New(status.Convert(err).Message())
 	}
 	return nil
 }

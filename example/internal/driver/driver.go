@@ -20,6 +20,7 @@ import (
 	"github.com/winc-link/hummingbird-sdk-go/example/internal/device"
 	"github.com/winc-link/hummingbird-sdk-go/model"
 	"github.com/winc-link/hummingbird-sdk-go/service"
+	"time"
 )
 
 type SimpleDriver struct {
@@ -48,11 +49,35 @@ func (s *SimpleDriver) Stop(ctx context.Context) error {
 
 func (s *SimpleDriver) HandlePropertySet(ctx context.Context, deviceId string, data model.PropertySet) error {
 	s.sd.GetLogger().Infof("HandlePropertySet deviceId:%s data:%v", deviceId, data)
+
+	err := s.sd.PropertySetResponse(deviceId, model.NewPropertySetResponse(data.MsgId, model.PropertySetResponseData{
+		Success: true,
+	}))
+	if err != nil {
+		s.sd.GetLogger().Infof("PropertyGetResponse err:%v", err.Error())
+	}
 	return nil
 }
 
 func (s *SimpleDriver) HandlePropertyGet(ctx context.Context, deviceId string, data model.PropertyGet) error {
 	s.sd.GetLogger().Infof("HandlePropertyGet deviceId:%s data:%v", deviceId, data)
+
+	time.Sleep(1 * time.Second)
+
+	var propertyGetResponseData []model.PropertyGetResponseData
+
+	for code, _ := range data.Spec {
+		propertyGetResponseData = append(propertyGetResponseData, model.PropertyGetResponseData{
+			Code:  code,
+			Value: "34.1",
+			Time:  time.Now().UnixMilli(),
+		})
+	}
+
+	err := s.sd.PropertyGetResponse(deviceId, model.NewPropertyGetResponse(data.MsgId, propertyGetResponseData))
+	if err != nil {
+		s.sd.GetLogger().Infof("PropertyGetResponse err:%v", err.Error())
+	}
 	return nil
 }
 
