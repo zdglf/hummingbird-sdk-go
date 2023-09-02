@@ -117,17 +117,20 @@ func (d *DriverService) EventReport(deviceId string, data model.EventReport) (mo
 }
 
 // BatchReport 设备批量上报属性和事件 如果data参数中的Sys.Ack设置为1，则该方法会同步阻塞等待云端返回结果。
-// // 如非必要，不建议设置Sys.Ack
-func (d *DriverService) BatchReport(deviceId string, data model.BatchReport) (model.CommonResponse, error) {
-	return d.batchReport(deviceId, data)
-}
+// 如非必要，不建议设置Sys.Ack
+// 废弃
+//func (d *DriverService) BatchReport(deviceId string, data model.BatchReport) (model.CommonResponse, error) {
+//	return d.batchReport(deviceId, data)
+//}
 
 // PropertyDesiredGet 设备拉取属性期望值 如果data参数中的Sys.Ack设置为1，则该方法会同步阻塞等待云端返回结果。
+// 废弃
 //func (d *DriverService) PropertyDesiredGet(deviceId string, data model.PropertyDesiredGet) (model.PropertyDesiredGetResponse, error) {
 //	return d.propertyDesiredGet(deviceId, data)
 //}
 
 // PropertyDesiredDelete 设备删除属性期望值 如果data参数中的Sys.Ack设置为1，则该方法会同步阻塞等待云端返回结果。
+// 废弃
 //func (d *DriverService) PropertyDesiredDelete(deviceId string, data model.PropertyDesiredDelete) (model.PropertyDesiredDeleteResponse, error) {
 //	return d.propertyDesiredDelete(deviceId, data)
 //}

@@ -83,6 +83,15 @@ func (s *SimpleDriver) HandlePropertyGet(ctx context.Context, deviceId string, d
 
 func (s *SimpleDriver) HandleServiceExecute(ctx context.Context, deviceId string, data model.ServiceExecuteRequest) error {
 	s.sd.GetLogger().Infof("HandlePropertyGet deviceId:%s data:%v", deviceId, data)
+	err := s.sd.ServiceExecuteResponse(deviceId, model.NewServiceExecuteResponse(data.MsgId, model.ServiceDataOut{
+		Code: "service",
+		OutputParams: map[string]interface{}{
+			"ss": "123",
+		},
+	}))
+	if err != nil {
+		s.sd.GetLogger().Infof("HandleServiceExecute err:%v", err.Error())
+	}
 	return nil
 }
 

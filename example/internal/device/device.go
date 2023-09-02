@@ -36,87 +36,63 @@ func RandomNum() int64 {
 	return n.Int64()
 }
 
-func (d *Device) run(ctx context.Context) {
+func run(sd *service.DriverService) {
 	ticker := time.NewTicker(time.Second * 5)
-	devices := d.sd.GetDeviceList()
+	devices := sd.GetDeviceList()
 
 	for {
 		select {
 		case <-ticker.C:
 			for _, device := range devices {
-				d.logger.Info("Print current time: ", time.Now().Format("2006-01-02 15:04:05"))
-				deviceStatus, _ := d.sd.GetConnectStatus(device.Id)
+				sd.GetLogger().Info("Print current time: ", time.Now().Format("2006-01-02 15:04:05"))
+				deviceStatus, _ := sd.GetConnectStatus(device.Id)
 				if deviceStatus != commons.Online {
-					_ = d.sd.Online(device.Id)
+					_ = sd.Online(device.Id)
 				}
-				//构造数据
-				reportData := model.BatchData{
-					Properties: map[string]model.BatchProperty{
-						"electric_fr":  {Value: RandomNum()},
-						"electric_fra": {Value: RandomNum()},
-						"electric_frb": {Value: RandomNum()},
-						"electric_frc": {Value: RandomNum()},
-						"electric_pfa": {Value: RandomNum()},
-						"electric_pfb": {Value: RandomNum()},
-						"electric_pfc": {Value: RandomNum()},
-						"electric_pqa": {Value: RandomNum()},
-						"electric_pqb": {Value: RandomNum()},
-						"electric_pqc": {Value: RandomNum()},
-					},
-				}
-				d.logger.Infof("device id %s , report data %v", device.Id, reportData)
-				_, err := d.sd.BatchReport(device.Id, model.NewBatchReport(false, reportData))
-				if err != nil {
-					d.logger.Error("report data error:", err.Error())
-				}
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_fr": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_fra": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_frb": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_frc": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pfa": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pfb": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pfc": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pqa": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pqb": model.NewPropertyData(RandomNum()),
+				}))
+
+				_, _ = sd.PropertyReport(device.Id, model.NewPropertyReport(false, map[string]model.PropertyData{
+					"electric_pqc": model.NewPropertyData(RandomNum()),
+				}))
 			}
-		case <-ctx.Done():
-			d.logger.Info("simple driver stop")
-			for _, device := range devices {
-				_ = d.sd.Offline(device.Id)
-			}
-			return
 		}
 	}
 }
 
 func Initialize(ctx context.Context, sd *service.DriverService) {
-
-	devices := sd.GetDeviceList()
-	sd.GetLogger().Info("device count:", len(devices))
-
-	for _, device := range devices {
-		dev := device
-		go deviceReportData(dev.Id, sd)
-	}
-}
-
-func deviceReportData(deviceId string, sd *service.DriverService) {
-	deviceStatus, _ := sd.GetConnectStatus(deviceId)
-	if deviceStatus != commons.Online {
-		_ = sd.Online(deviceId)
-	}
-	for {
-		time.Sleep(1 * time.Second)
-		//构造数据
-		reportData := model.BatchData{
-			Properties: map[string]model.BatchProperty{
-				"electric_fr":  {Value: RandomNum()},
-				"electric_fra": {Value: RandomNum()},
-				"electric_frb": {Value: RandomNum()},
-				"electric_frc": {Value: RandomNum()},
-				"electric_pfa": {Value: RandomNum()},
-				"electric_pfb": {Value: RandomNum()},
-				"electric_pfc": {Value: RandomNum()},
-				"electric_pqa": {Value: RandomNum()},
-				"electric_pqb": {Value: RandomNum()},
-				"electric_pqc": {Value: RandomNum()},
-			},
-		}
-		sd.GetLogger().Infof("device id %s , report data %v", deviceId, reportData)
-		_, err := sd.BatchReport(deviceId, model.NewBatchReport(false, reportData))
-		if err != nil {
-			sd.GetLogger().Error("report data error:", err.Error())
-		}
-	}
+	go run(sd)
 }

@@ -32,7 +32,14 @@ type (
 
 	// ServiceExecuteResponse 执行设备动作响应
 	ServiceExecuteResponse struct {
-		CommonResponse `json:",inline"`
-		Data           ServiceDataOut `json:"data"`
+		MsgId string         `json:"msgId"`
+		Data  ServiceDataOut `json:"data"`
 	}
 )
+
+func NewServiceExecuteResponse(msgId string, data ServiceDataOut) ServiceExecuteResponse {
+	return ServiceExecuteResponse{
+		MsgId: msgId,
+		Data:  data,
+	}
+}
