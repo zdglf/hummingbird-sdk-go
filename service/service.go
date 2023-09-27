@@ -478,17 +478,10 @@ func (d *DriverService) getConnectStatus(deviceId string) (commons.DeviceConnect
 	return "", errors.New("unKnow error")
 }
 
-func (d *DriverService) getDeviceList() map[string]model.Device {
-	var devices = make(map[string]model.Device)
-	for k, v := range d.deviceCache.All() {
-		devices[k] = model.Device{
-			Id:          v.Id,
-			Name:        v.Name,
-			ProductId:   v.ProductId,
-			Description: v.Description,
-			Status:      v.Status,
-			Platform:    v.Platform,
-		}
+func (d *DriverService) getDeviceList() []model.Device {
+	var devices []model.Device
+	for _, v := range d.deviceCache.All() {
+		devices = append(devices, v)
 	}
 	return devices
 }

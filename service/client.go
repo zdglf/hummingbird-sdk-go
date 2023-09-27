@@ -57,7 +57,7 @@ func (d *DriverService) CreateDevice(device model.AddDevice) (model.Device, erro
 }
 
 // GetDeviceList 获取所有的设备
-func (d *DriverService) GetDeviceList() map[string]model.Device {
+func (d *DriverService) GetDeviceList() []model.Device {
 	return d.getDeviceList()
 }
 
