@@ -96,9 +96,9 @@ func (d *DriverService) GetProductEventByCode(productId, code string) (model.Eve
 	return d.getProductEventByCode(productId, code)
 }
 
-// GetPropertyServices 根据产品id获取产品所有服务信息
-func (d *DriverService) GetPropertyServices(productId string) (map[string]model.Service, bool) {
-	return d.getPropertyServices(productId)
+// GetProductServices 根据产品id获取产品所有服务信息
+func (d *DriverService) GetProductServices(productId string) (map[string]model.Service, bool) {
+	return d.getProductServices(productId)
 }
 
 // GetProductServiceByCode 根据产品id与code获取服务信息

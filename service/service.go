@@ -563,7 +563,7 @@ func (d *DriverService) getProductEventByCode(productId, code string) (model.Eve
 	return d.productCache.GetEventSpecByCode(productId, code)
 }
 
-func (d *DriverService) getPropertyServices(productId string) (map[string]model.Service, bool) {
+func (d *DriverService) getProductServices(productId string) (map[string]model.Service, bool) {
 	return d.productCache.GetProductServices(productId)
 }
 

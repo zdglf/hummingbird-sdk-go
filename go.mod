@@ -6,7 +6,7 @@ require (
 	github.com/BurntSushi/toml v1.3.2
 	github.com/eclipse/paho.mqtt.golang v1.4.3
 	github.com/natefinch/lumberjack v2.0.0+incompatible
-	github.com/winc-link/edge-driver-proto v0.0.0-20230208100708-287ba270a685
+	github.com/winc-link/edge-driver-proto v0.0.0-20230927064940-f31381cfe585
 	go.uber.org/zap v1.24.0
 	google.golang.org/grpc v1.57.0
 	google.golang.org/protobuf v1.31.0
