@@ -513,7 +513,7 @@ func (d *DriverService) createDevice(addDevice model.AddDevice) (device model.De
 		resp *driverdevice.CreateDeviceRequestResponse
 	)
 
-	if addDevice.ProductId == "" || addDevice.Name == "" {
+	if addDevice.ProductId == "" || addDevice.Name == "" || addDevice.DeviceSn == "" {
 		err = errors.New("param failed")
 		return
 	}
@@ -523,6 +523,9 @@ func (d *DriverService) createDevice(addDevice model.AddDevice) (device model.De
 	reqDevice := new(driverdevice.AddDevice)
 	reqDevice.Name = addDevice.Name
 	reqDevice.ProductId = addDevice.ProductId
+	reqDevice.DeviceSn = addDevice.DeviceSn
+	reqDevice.Description = addDevice.Description
+	reqDevice.External = addDevice.External
 	req := driverdevice.CreateDeviceRequest{
 		BaseRequest: d.baseMessage.BuildBaseRequest(),
 		Device:      reqDevice,
@@ -536,6 +539,8 @@ func (d *DriverService) createDevice(addDevice model.AddDevice) (device model.De
 			deviceInfo.Id = resp.Data.Devices.Id
 			deviceInfo.Name = resp.Data.Devices.Name
 			deviceInfo.ProductId = resp.Data.Devices.ProductId
+			deviceInfo.DeviceSn = resp.Data.Devices.DeviceSn
+			deviceInfo.External = resp.Data.Devices.External
 			deviceInfo.Status = commons.TransformRpcDeviceStatusToModel(resp.Data.Devices.Status)
 			deviceInfo.Platform = commons.TransformRpcPlatformToModel(resp.Data.Devices.Platform)
 			d.deviceCache.Add(deviceInfo)
