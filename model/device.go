@@ -28,6 +28,7 @@ type (
 		Description string
 		Status      commons.DeviceStatus
 		Platform    commons.IotPlatform
+		Secret      string
 		External    map[string]string
 	}
 )
@@ -61,6 +62,7 @@ func TransformDeviceModel(dev *driverdevice.Device) Device {
 	d.DeviceSn = dev.GetDeviceSn()
 	d.Status = commons.TransformRpcDeviceStatusToModel(dev.GetStatus())
 	d.Platform = commons.TransformRpcPlatformToModel(dev.GetPlatform())
+	d.Secret = dev.GetSecret()
 	d.External = dev.GetExternal()
 	return d
 }
