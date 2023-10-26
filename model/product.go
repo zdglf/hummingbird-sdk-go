@@ -24,6 +24,7 @@ type (
 		//CreateAt     time.Time
 		Id           string
 		Name         string
+		Key          string
 		Description  string
 		NodeType     commons.ProductNodeType
 		DataFormat   string
@@ -88,6 +89,7 @@ func TransformProductModel(p *driverproduct.Product) Product {
 	return Product{
 		Id:           p.GetId(),
 		Name:         p.GetName(),
+		Key:          p.GetKey(),
 		Description:  p.GetDescription(),
 		NodeType:     commons.TransformRpcNodeTypeToModel(p.NodeType),
 		Platform:     commons.TransformRpcPlatformToModel(p.Platform),
