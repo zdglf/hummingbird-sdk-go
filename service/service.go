@@ -491,14 +491,7 @@ func (d *DriverService) getDeviceById(deviceId string) (model.Device, bool) {
 	if !ok {
 		return model.Device{}, false
 	}
-	return model.Device{
-		Id:          device.Id,
-		Name:        device.Name,
-		ProductId:   device.ProductId,
-		Description: device.Description,
-		Status:      device.Status,
-		Platform:    device.Platform,
-	}, true
+	return device, true
 }
 
 func (d *DriverService) createDevice(addDevice model.AddDevice) (device model.Device, err error) {
@@ -533,6 +526,7 @@ func (d *DriverService) createDevice(addDevice model.AddDevice) (device model.De
 			deviceInfo.Name = resp.Data.Devices.Name
 			deviceInfo.ProductId = resp.Data.Devices.ProductId
 			deviceInfo.DeviceSn = resp.Data.Devices.DeviceSn
+			deviceInfo.Secret = resp.Data.Devices.Secret
 			deviceInfo.External = resp.Data.Devices.External
 			deviceInfo.Status = commons.TransformRpcDeviceStatusToModel(resp.Data.Devices.Status)
 			deviceInfo.Platform = commons.TransformRpcPlatformToModel(resp.Data.Devices.Platform)
