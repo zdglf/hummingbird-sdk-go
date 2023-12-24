@@ -17,13 +17,14 @@ package cache
 import (
 	"context"
 	"errors"
+	"time"
+
 	"github.com/winc-link/edge-driver-proto/driverdevice"
 	"github.com/winc-link/edge-driver-proto/driverproduct"
-	"github.com/winc-link/hummingbird-sdk-go/commons"
-	"github.com/winc-link/hummingbird-sdk-go/internal/client"
-	"github.com/winc-link/hummingbird-sdk-go/internal/logger"
-	"github.com/winc-link/hummingbird-sdk-go/model"
-	"time"
+	"github.com/zdglf/hummingbird-sdk-go/commons"
+	"github.com/zdglf/hummingbird-sdk-go/internal/client"
+	"github.com/zdglf/hummingbird-sdk-go/internal/logger"
+	"github.com/zdglf/hummingbird-sdk-go/model"
 )
 
 func InitDeviceCache(baseMessage commons.BaseMessage, cli *client.ResourceClient, logger logger.Logger) (*DeviceCache, error) {

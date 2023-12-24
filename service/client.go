@@ -15,10 +15,10 @@
 package service
 
 import (
-	"github.com/winc-link/hummingbird-sdk-go/commons"
-	"github.com/winc-link/hummingbird-sdk-go/interfaces"
-	"github.com/winc-link/hummingbird-sdk-go/internal/logger"
-	"github.com/winc-link/hummingbird-sdk-go/model"
+	"github.com/zdglf/hummingbird-sdk-go/commons"
+	"github.com/zdglf/hummingbird-sdk-go/interfaces"
+	"github.com/zdglf/hummingbird-sdk-go/internal/logger"
+	"github.com/zdglf/hummingbird-sdk-go/model"
 )
 
 // Start 启动驱动

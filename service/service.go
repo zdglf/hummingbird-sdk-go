@@ -17,7 +17,6 @@ package service
 import (
 	"context"
 	"errors"
-	"flag"
 	"fmt"
 
 	"os"
@@ -26,15 +25,15 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/winc-link/hummingbird-sdk-go/commons"
-	"github.com/winc-link/hummingbird-sdk-go/interfaces"
-	"github.com/winc-link/hummingbird-sdk-go/internal/cache"
-	"github.com/winc-link/hummingbird-sdk-go/internal/client"
-	"github.com/winc-link/hummingbird-sdk-go/internal/config"
-	"github.com/winc-link/hummingbird-sdk-go/internal/logger"
-	"github.com/winc-link/hummingbird-sdk-go/internal/server"
-	"github.com/winc-link/hummingbird-sdk-go/internal/snowflake"
-	"github.com/winc-link/hummingbird-sdk-go/model"
+	"github.com/zdglf/hummingbird-sdk-go/commons"
+	"github.com/zdglf/hummingbird-sdk-go/interfaces"
+	"github.com/zdglf/hummingbird-sdk-go/internal/cache"
+	"github.com/zdglf/hummingbird-sdk-go/internal/client"
+	"github.com/zdglf/hummingbird-sdk-go/internal/config"
+	"github.com/zdglf/hummingbird-sdk-go/internal/logger"
+	"github.com/zdglf/hummingbird-sdk-go/internal/server"
+	"github.com/zdglf/hummingbird-sdk-go/internal/snowflake"
+	"github.com/zdglf/hummingbird-sdk-go/model"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"github.com/winc-link/edge-driver-proto/cloudinstance"
@@ -63,25 +62,24 @@ type DriverService struct {
 	readyChan         chan struct{}
 }
 
-func NewDriverService(serviceName string, iotPlatform commons.IotPlatform) *DriverService {
+func NewDriverService(serviceName string, iotPlatform commons.IotPlatform, configFile string) (ds *DriverService, err error) {
 	var (
 		wg         sync.WaitGroup
-		err        error
 		cfg        *config.DriverConfig
 		log        logger.Logger
 		coreClient *client.ResourceClient
 		node       *snowflake.Worker
 	)
-
-	flag.StringVar(&config.FilePath, "c", config.DefaultConfigFilePath, "./driver -c configFile")
-	flag.Parse()
-	if cfg, err = config.ParseConfig(); err != nil {
+	if configFile == "" {
+		configFile = config.DefaultConfigFilePath
+	}
+	if cfg, err = config.ParseConfig(configFile); err != nil {
 		fmt.Println(err)
 
-		os.Exit(-1)
+		return
 	}
 	if err = cfg.ValidateConfig(); err != nil {
-		os.Exit(-1)
+		return
 	}
 
 	log = logger.NewLogger(cfg.Logger.FileName, cfg.Logger.LogLevel, serviceName)
@@ -89,12 +87,12 @@ func NewDriverService(serviceName string, iotPlatform commons.IotPlatform) *Driv
 	// Start rpc client
 	if coreClient, err = client.NewCoreClient(cfg.Clients[config.Core]); err != nil {
 		log.Errorf("new resource client error: %rpcServer", err)
-		os.Exit(-1)
+		return
 	}
 	// Snowflake node
 	if node, err = snowflake.NewWorker(1); err != nil {
 		log.Errorf("new msg id generator error: %rpcServer", err)
-		os.Exit(-1)
+		return
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -111,20 +109,20 @@ func NewDriverService(serviceName string, iotPlatform commons.IotPlatform) *Driv
 	}
 	if err = driverService.buildRpcBaseMessage(); err != nil {
 		log.Error("buildRpcBaseMessage error:", err)
-		os.Exit(-1)
+		return
 	}
 
 	if err = driverService.reportDriverInfo(); err != nil {
 		log.Error("reportDriverInfo error:", err)
-		os.Exit(-1)
+		return
 	}
 
 	if err = driverService.initCache(); err != nil {
 		log.Error("initCache error:", err)
-		os.Exit(-1)
+		return
 	}
-
-	return driverService
+	ds = driverService
+	return
 }
 
 func (d *DriverService) buildRpcBaseMessage() error {

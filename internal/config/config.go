@@ -82,13 +82,13 @@ func (d *DriverConfig) ValidateConfig() error {
 	return nil
 }
 
-func ParseConfig() (*DriverConfig, error) {
+func ParseConfig(filePath string) (*DriverConfig, error) {
 	var (
 		err      error
 		contents []byte
 		dc       DriverConfig
 	)
-	if contents, err = ioutil.ReadFile(FilePath); err != nil {
+	if contents, err = ioutil.ReadFile(filePath); err != nil {
 		return nil, errors.New(fmt.Sprintf("service not load configuration file: %s", err.Error()))
 	}
 	if err = toml.Unmarshal(contents, &dc); err != nil {
