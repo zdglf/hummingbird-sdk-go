@@ -19,8 +19,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/winc-link/edge-driver-proto/driverdevice"
-	"github.com/winc-link/edge-driver-proto/driverproduct"
+	"github.com/zdglf/edge-driver-proto/driverdevice"
+	"github.com/zdglf/edge-driver-proto/driverproduct"
 	"github.com/zdglf/hummingbird-sdk-go/commons"
 	"github.com/zdglf/hummingbird-sdk-go/internal/client"
 	"github.com/zdglf/hummingbird-sdk-go/internal/logger"

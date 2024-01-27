@@ -14,7 +14,7 @@
 
 package commons
 
-import "github.com/winc-link/edge-driver-proto/driverdevice"
+import "github.com/zdglf/edge-driver-proto/driverdevice"
 
 type DeviceConnectStatus string
 

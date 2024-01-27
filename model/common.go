@@ -15,7 +15,7 @@
 package model
 
 import (
-	"github.com/winc-link/edge-driver-proto/drivercommon"
+	"github.com/zdglf/edge-driver-proto/drivercommon"
 )
 
 const Version = "1.0"

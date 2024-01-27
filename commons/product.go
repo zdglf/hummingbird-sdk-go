@@ -14,7 +14,7 @@
 
 package commons
 
-import "github.com/winc-link/edge-driver-proto/driverproduct"
+import "github.com/zdglf/edge-driver-proto/driverproduct"
 
 type ProductNodeType string
 

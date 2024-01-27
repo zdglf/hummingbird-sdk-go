@@ -15,7 +15,7 @@
 package commons
 
 import (
-	"github.com/winc-link/edge-driver-proto/drivercommon"
+	"github.com/zdglf/edge-driver-proto/drivercommon"
 )
 
 type IotPlatform string

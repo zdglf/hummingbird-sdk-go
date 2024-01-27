@@ -22,7 +22,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/winc-link/edge-driver-proto/drivercommon"
+	"github.com/zdglf/edge-driver-proto/drivercommon"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 

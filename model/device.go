@@ -15,7 +15,7 @@
 package model
 
 import (
-	"github.com/winc-link/edge-driver-proto/driverdevice"
+	"github.com/zdglf/edge-driver-proto/driverdevice"
 	"github.com/zdglf/hummingbird-sdk-go/commons"
 )
 

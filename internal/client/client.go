@@ -24,14 +24,14 @@ import (
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/keepalive"
 
-	cloudinstanceproto "github.com/winc-link/edge-driver-proto/cloudinstance"
-	"github.com/winc-link/edge-driver-proto/custommqttmessage"
-	"github.com/winc-link/edge-driver-proto/drivercommon"
-	deviceproto "github.com/winc-link/edge-driver-proto/driverdevice"
-	productproto "github.com/winc-link/edge-driver-proto/driverproduct"
-	driverstorage "github.com/winc-link/edge-driver-proto/driverstorge"
-	gatewayproto "github.com/winc-link/edge-driver-proto/gateway"
-	"github.com/winc-link/edge-driver-proto/thingmodel"
+	cloudinstanceproto "github.com/zdglf/edge-driver-proto/cloudinstance"
+	"github.com/zdglf/edge-driver-proto/custommqttmessage"
+	"github.com/zdglf/edge-driver-proto/drivercommon"
+	deviceproto "github.com/zdglf/edge-driver-proto/driverdevice"
+	productproto "github.com/zdglf/edge-driver-proto/driverproduct"
+	driverstorage "github.com/zdglf/edge-driver-proto/driverstorge"
+	gatewayproto "github.com/zdglf/edge-driver-proto/gateway"
+	"github.com/zdglf/edge-driver-proto/thingmodel"
 )
 
 type ResourceClient struct {

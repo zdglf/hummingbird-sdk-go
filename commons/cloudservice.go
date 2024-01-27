@@ -14,7 +14,7 @@
 
 package commons
 
-import "github.com/winc-link/edge-driver-proto/cloudinstance"
+import "github.com/zdglf/edge-driver-proto/cloudinstance"
 
 type CloudServiceInfo struct {
 	CloudInstanceId   string

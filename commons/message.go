@@ -17,7 +17,8 @@ package commons
 import (
 	"encoding/json"
 	"errors"
-	"github.com/winc-link/edge-driver-proto/thingmodel"
+
+	"github.com/zdglf/edge-driver-proto/thingmodel"
 )
 
 const (

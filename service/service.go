@@ -36,10 +36,10 @@ import (
 	"github.com/zdglf/hummingbird-sdk-go/model"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
-	"github.com/winc-link/edge-driver-proto/cloudinstance"
-	"github.com/winc-link/edge-driver-proto/drivercommon"
-	"github.com/winc-link/edge-driver-proto/driverdevice"
-	driverstorage "github.com/winc-link/edge-driver-proto/driverstorge"
+	"github.com/zdglf/edge-driver-proto/cloudinstance"
+	"github.com/zdglf/edge-driver-proto/drivercommon"
+	"github.com/zdglf/edge-driver-proto/driverdevice"
+	driverstorage "github.com/zdglf/edge-driver-proto/driverstorge"
 	"google.golang.org/grpc/status"
 )
 
